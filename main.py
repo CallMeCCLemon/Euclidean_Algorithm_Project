@@ -3,11 +3,19 @@
 def main():
     # gcd()
     # phi_function()
+    print "RSA Homework:"
+    print "Problem 1:"
+    print "***A) p=3, q=11, e=7, M=5***"
     rsa_encrypt(3*11, 7, 5)
+    print "***B) p=5, q=11, e=3, M=9***"
     rsa_encrypt(5*11, 3, 9)
+    print "***C) p=7, q=11, e=17, M=8***"
     rsa_encrypt(7*11, 17, 8)
+    print "***D) p=11, q=13, e=11, M=7***"
     rsa_encrypt(11*13, 11, 7)
 
+    print "Problem 2:"
+    print "***n=35, e=5, encrypted_message = 10***"
     rsa_decrypt(35, 5, 10)
 
 
