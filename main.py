@@ -3,11 +3,12 @@
 def main():
     # gcd()
     # phi_function()
-    rsa_encrypt(3, 11, 7, 5)
-    rsa_encrypt(5, 11, 3, 9)
-    rsa_encrypt(7, 11, 17, 8)
-    rsa_encrypt(11, 13, 11, 7)
-    # rsa_encrypt
+    rsa_encrypt(3*11, 7, 5)
+    rsa_encrypt(5*11, 3, 9)
+    rsa_encrypt(7*11, 17, 8)
+    rsa_encrypt(11*13, 11, 7)
+
+    rsa_decrypt(35, 5, 10)
 
 
 def gcd():
@@ -45,8 +46,7 @@ def calculate_phi(number):
     return return_value
 
 
-def rsa_encrypt(p, q, e, m):
-    n = q * p
+def rsa_encrypt(n, e, m):
     phi_n = calculate_phi(n)
     d = 0
     while (e * d) % phi_n != 1:
@@ -55,9 +55,19 @@ def rsa_encrypt(p, q, e, m):
     print "Private Key: d = {0}".format(d)
     print "Encrypting Message = {0}.".format(m)
     encrypted_message = (m**e) % n
-    print "Encrypted Message = {0}.".format(encrypted_message)
-    print "Decrypting Message = {0}.".format(encrypted_message)
-    decrypted_message = (encrypted_message**d) % n
+    print "Encrypted Message = {0}.\n".format(encrypted_message)
+    rsa_decrypt(n, e, encrypted_message)
+
+
+def rsa_decrypt(n, e, m):
+    phi_n = calculate_phi(n)
+    d = 0
+    while (e * d) % phi_n != 1:
+        d += 1
+    print "Public Key (e, n): ({0}, {1})".format(e, n)
+    print "Private Key: d = {0}".format(d)
+    print "Decrypting Message = {0}.".format(m)
+    decrypted_message = (m**d) % n
     print "Decrypted Message = {0}.\n".format(decrypted_message)
 
 if __name__ == '__main__':
